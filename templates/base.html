@@ -1,18 +1,35 @@
-
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html>
     <head>
         <title>BRF Chainmail</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{% static '/css/base.css' %}">
+        <script type="text/javascript" src="{% static 'js/toggle.js' %}" defer></script>
     </head>
     <body>
-        <header>
-            <h1>Chainmail Home</h1>
-        </header>
-        <div>
-            {% block content %}
-            {% endblock content %}
-        </div>
+        <nav class="navbar">
+            <div class="brand-title">BRF Chainmail</div>
+            <a href="#" class="toggle-button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'home' %}">About</a></li>
+                    <li><a href="{% url 'all_stock' %}">Available Stock</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        
+        
+        {% block content %}
+        {% endblock content %}
+        
     </body>
 </html>

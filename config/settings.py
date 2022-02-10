@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+from environs import Env
+
+env = Env()
+env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,24 +27,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET KEY
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'storages',
+    'pages.apps.PagesConfig',
+    'bracelets.apps.BraceletsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pages'
+
 ]
 
 MIDDLEWARE = [
@@ -75,10 +86,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': env.dj_db_url('DATABASE_URL')
 }
 
 
@@ -119,4 +127,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_DIRS = [str(BASE_DIR.joinpath('static'))]
+STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+# S3 STORAGE
+AWS_ACCESS_KEY_ID = 'AKIAUY4TXUUOV6HNT547'
+#AWS_SECRET_ACCESS_KEY = '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'
+AWS_SECRET_ACCESS_KEY = '98b4/svLS5uwv2D+hRbYkIQAI36n+psXkALTklTL'
+AWS_STORAGE_BUCKET_NAME = 'brfchainmaille-crm-bucket'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'

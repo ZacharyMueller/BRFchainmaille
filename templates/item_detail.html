@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+{% block content %} 
+<div class="top-info"> 
+    <div id="main-info"> 
+        <h1>{{ object.title }}</h1> 
+        <div id="below-title-info">
+
+            <section>
+                <p style="margin: 1vh 0; font-size: 1.4rem;">Price: ${{ object.price }}</p> 
+                <p style="margin: 1vh 0; font-size: 1.4rem;">Available: {{ object.available }}</p>
+                {% if object.description %}
+                    <p style="margin: 1vh 0; font-size: 1.4rem;" class="description">
+                        Description: 
+                        {{ object.description }}</p>
+                {% endif %}
+                {% if object.available == 0 %}
+                    <div class="out-of-stock">This Item is Currently Unavailable!</div>
+                {% endif %}
+            </section>
+        </div> 
+    </div> 
+</div> 
+<div class="image-gallery-container"> 
+    <h1>Image Gallery</h1>
+    <p >({{ object.get_item_type_display }})</p>
+    <div class="image-gallery">
+        {% for imageobj in object.images.all %} 
+            <img src="{{ imageobj.image.url }}" class="gallery-image"> 
+        {% endfor %} 
+    </div>
+</div> 
+{% endblock content %}

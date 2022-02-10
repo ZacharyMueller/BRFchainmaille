@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div id="banner">
+        <h1>Available Stock</h1>
+    </div>
+    <div id="stock-options">
+        <ul id="option-links">
+            <li><a href="{% url 'all_stock' %}">All</a></li>
+            <li><a href="{% url 'bracelet_stock' %}">Bracelets</a></li>
+            <li><a href="{% url 'earing_stock' %}">Earings</a></li>
+        </ul>
+    </div>
+    <div class="item-rows">
+        {% for bracelet in object_list %}
+        <a href="{% url 'detail' bracelet.id %}">
+            <div class="item">
+                {% with bracelet.images.all|first as imageobj %}
+                    <img class="sized" src="{{ imageobj.image.url }}">
+                {% endwith %}
+                <div class="details">
+                    <h2>{{ bracelet.title }}</h2>
+                    <p id="type">({{ bracelet.get_item_type_display }})</p>
+                    <p>Price: ${{ bracelet.price }}</p>
+                    <p>Available: {{ bracelet.available }}</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+{% endblock content %}

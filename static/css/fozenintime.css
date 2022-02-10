@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Sora';
+}
+
+body {
+    background-color: #3e3c3b;
+}
+main {
+    position: relative;
+    background-color: #3e3c3b;
+    height: 100%;
+    width: 100%;
+    border-top: 3px solid black;
+    top: -170px;
+    margin: auto;
+}
+
+#graphic {
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+
+
+/* Navabar styles */
+
+header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color:rgb(42 41 41);
+    background-color: rgb(255 173 57);
+    padding: 20px
+}
+header nav ul {
+    margin-left: 70px;
+}
+.nav_link {
+    list-style: none;
+}
+
+.nav_link li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav_link li a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+}
+.nav_link li a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-decoration-color: inherit;
+    text-underline-offset: 6px;
+}
+/* End of Navbar */
+
+/* Home Page Styles */
+#main-header {
+    position: relative;
+    text-align: center;
+    margin: auto;
+    font-size: 50px;
+    height: auto;
+    width: 700px;
+    top: -200px;
+    color: rgb(255 173 57);
+    background-color: rgb(104, 104, 104, .5);
+}
+
+main h1{
+    margin: 20px;
+}
+
+main hr {
+    background-color: black;
+    width: 40%;
+    height: 5px;
+    margin: 0 30% 2% 30%;
+}
+.all-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: space-around;
+    align-content: space-around;
+    justify-content: space-between;
+    margin: auto;
+    height: 700px;
+    width: 50%;
+    line-height: 30px;
+}
+
+.welcome-info {
+    background-color: rgb(255 173 57);
+    padding: 20px;
+    border-radius: 3%;
+    border: 2px solid black;
+    width: 500px;
+}
+
+.about-info {
+    background-color: rgb(255 173 57);
+    border-radius: 3%;
+    padding: 20px;
+    border: 2px solid black;
+    width: 500px;
+
+}
+
+.featured-items {
+    background-color: rgb(255 173 57);
+    flex-grow: 1;
+    border-radius: 10px;
+    padding: 20px;
+    border: 2px solid black;
+
+}
+
+.sized {
+    width: 50px;
+    height: auto;
+}
+
+/* ALL stock */
